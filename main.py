@@ -27,13 +27,9 @@ def handle_files_and_code(message):
     progress_msg = bot.reply_to(message, "⏳ ফাইল বা কোড পাওয়া গেছে!\n\n🔄 **প্রক্রিয়াধীন আছে...**\n• AI কোড স্ক্যান করছে...\n• সিনট্যাক্স এবং ভুল যাচাই করা হচ্ছে...\n• APK বিল্ড করা হচ্ছে...")
     
     try:
-        # এখানে AI কোড অ্যানালাইসিস এবং প্রসেসিং সিমুলেশন চলছে
         time.sleep(3)
-        
-        # AI কোড চেক করার পর ফিডব্যাক
         ai_check_result = "✅ **AI অ্যানালাইসিস সফল!**\n- কোডে কোনো বড় ত্রুটি পাওয়া যায়নি।\n- ট্যাগ এবং স্ক্রিপ্ট নিখুঁত আছে।"
         
-        # প্রোগ্রেস মেসেজ আপডেট করে সফল বার্তা পাঠানো
         bot.edit_message_text(
             chat_id=message.chat.id,
             message_id=progress_msg.message_id,
@@ -41,7 +37,6 @@ def handle_files_and_code(message):
         )
         
     except Exception as e:
-        # কোডে কোনো সমস্যা বা ভুল থাকলে AI যেভাবে ধরিয়ে দেবে
         error_report = f"⚠️ **AI এরর ডিটেক্টর (Error Detector):**\nকোডে একটি সমস্যা ধরা পড়েছে:\n`{str(e)}`\n\nদয়া করে কোডটি ঠিক করে আবার পাঠান।"
         bot.edit_message_text(
             chat_id=message.chat.id,
@@ -49,5 +44,4 @@ def handle_files_and_code(message):
             text=error_report
         )
 
-# বট রান করার জন্য
 bot.infinity_polling()
